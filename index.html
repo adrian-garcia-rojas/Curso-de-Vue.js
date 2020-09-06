@@ -7,14 +7,17 @@
     </head>
     <body>
         <div id="elemento" class="container mt-5">
-            <div :class="['p-2', 'text-white', colorFondo]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla veritatis cumque fuga doloremque consequatur distinctio ipsa porro culpa odio! Itaque, voluptatibus corrupti! Quas eum, consectetur perspiciatis repudiandae iure itaque rerum?
+            <h3>{{texto}}</h3>
+            <h3>{{alReves}}</h3>
+            <input type="text" v-model="texto">
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" :style="{width:contador+'%'}" :class="tipoBarra">
+                    {{contador}}
+                </div>
             </div>
-            <input type="text" v-model="colorFondo">
-            <div class="p-2 text-white" :class="{'bg-danger':cambioColor, 'bg-primary':!cambioColor}">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla veritatis cumque fuga doloremque consequatur distinctio ipsa porro culpa odio! Itaque, voluptatibus corrupti! Quas eum, consectetur perspiciatis repudiandae iure itaque rerum?
-            </div>
-            <button class="btn btn-primary" @click="cambioColor=!cambioColor">Cambia color</button>
+            <button @click="contador++" class="btn btn-primary">+</button>
+            <button @click="contador--" class="btn btn-danger">-</button>
         </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -22,14 +25,23 @@
         const con = new Vue({
             el:"#elemento",
             data:{
-                colorFondo:'bg-primary',
-                cambioColor:false
+                texto:'cadena de texto',
+                contador:0
             },
             methods:{
                 
             },
             computed:{
-                
+                alReves(){
+                    return this.texto.split('').reverse().join('')
+                },
+                tipoBarra(){
+                    return {
+                        'bg-success':this.contador <= 10,
+                        'bg-warning':this.contador > 10 && this.contador <= 20,
+                        'bg-danger':this.contador > 20
+                    }
+                }
             }
         })
     </script>
