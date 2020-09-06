@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Curso de Vue.js</title>
+    </head>
+    <body>
+        <div id="elemento">
+            {{contenido}}
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        const con = new Vue({
+            el:"#elemento",
+            data:{
+                contenido:"hola mundo desde vue.js"
+            }
+        })
+    </script>
+</html>
